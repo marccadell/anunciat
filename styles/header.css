@@ -1,0 +1,81 @@
+.navbar {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin: 15px;
+    
+    height: 8vh;
+}
+
+.logo {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+.nav-title {
+    color: #fff;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin: 0;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.profile-photo {
+    border-radius: 50%;
+    border: 1px solid rgba(33, 33, 33, 0.42);
+    background-color: #fff;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+.user-options {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 65px;
+    right: 5px;
+    background-color: #fafafa;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 100;
+    width: max-content;
+}
+
+.user-options a {
+    color: #2c3943;
+    text-decoration: none;
+    font-size: 1em;
+    padding: 15px 10px;
+    transition: color 0.3s ease;
+}
+
+.user-options a:hover {
+    color: #1db954;
+    background-color: rgba(29, 185, 84, 0.1);
+    border-radius: 20px;
+}
+
+.user-profile:hover .user-options {
+    display: flex;
+}
+
+h2 a {
+    color: #3a3a3a;
+    text-decoration: none;
+}
+
+a {
+    color: #2c3943;
+    text-decoration: none;
+}

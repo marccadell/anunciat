@@ -1,0 +1,120 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.container {
+    background: #ffffff;
+    padding: 40px 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 128, 0, 0.2);
+    max-width: 450px;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    color: #008000;
+    margin-bottom: 30px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.register-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+
+}
+
+.form-group {
+    width: 100%;
+    max-width: 350px;
+    text-align: left;
+}
+
+.form-group label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 7px;
+    color: #333;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #008000;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+
+.input-foto {
+    border: 2px solid #008000;
+    background-color: transparent;
+    padding: 0;
+    cursor: pointer;
+}
+
+.form-group select {
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    border-color: #004d00;
+    box-shadow: 0 0 8px rgba(0, 128, 0, 0.5);
+    background-color: #ffffff;
+}
+
+.button {
+    background-color: #008000;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-weight: bold;
+    width: 100%;
+    max-width: 350px;
+    margin-top: 15px;
+}
+
+.button:hover {
+    background-color: #004d00;
+}
+
+a {
+    display: inline-block;
+    margin-top: 5px;
+    color: #008000;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #005f00;
+}
+
+
+
+@media (max-width: 480px) {
+    .container {
+        width: 90%;
+        padding: 20px;
+    }
+}

@@ -1,0 +1,116 @@
+.profile-wrapper {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.profile-container {
+    background: #ffffff;
+    padding: 30px 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 128, 0, 0.2);
+    text-align: center;
+    max-width: 400px;
+    width: 100%;
+    transition: transform 0.3s ease;
+}
+
+.profile-container:hover {
+    transform: scale(1.02);
+}
+
+.profile-photo {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #008000;
+    margin-bottom: 15px;
+}
+
+.profile-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #008000;
+    margin-bottom: 10px;
+}
+
+.profile-email {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.profile-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.profile-actions a,
+.profile-actions button {
+    background-color: #008000;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    font-size: 14px;
+}
+
+.profile-actions a:hover,
+.profile-actions button:hover {
+    background-color: #004d00;
+}
+
+.delete-button {
+    background-color: #d9534f;
+}
+
+.delete-button:hover {
+    background-color: #c9302c;
+}
+
+.back-button {
+    background-color: #006400;
+    margin-top: 15px;
+    padding: 12px 25px;
+    display: inline-block;
+    color: white;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: background 0.3s ease;
+    text-decoration: none;
+}
+
+.back-button:hover {
+    background-color: #003d00;
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 20px;
+    }
+
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+    }
+
+    .profile-actions a,
+    .profile-actions button,
+    .back-button {
+        width: 100%;
+        padding: 12px;
+    }
+}

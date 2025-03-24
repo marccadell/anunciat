@@ -1,0 +1,496 @@
+.precio {
+    display: none;
+}
+
+.anuncios-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px;
+    width: auto;
+}
+
+.anuncio-card {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    flex-direction: row;
+    align-items: center;
+    background: #eaf5d5;
+    border-radius: 10px;
+    padding: 15px;
+    width: 1000px;
+    min-height: 340px;
+    max-height: 370px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.perfil-foto {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 2.5px;
+}
+
+.anuncio-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.ubicacion-anuncio {
+    color: #555;
+}
+
+.anuncio-info {
+    width: 60%;
+    position: relative;
+    text-align: left;
+    margin: 0 20px 0 10px;
+    cursor: pointer;
+}
+
+.descripcion {
+    text-align: start;
+    max-height: 170px;
+    height: 105px;
+    border: 1px dashed blue;
+}
+
+.anuncio-tags-pago {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    background-color: #f8f9fa;
+    border-radius: 7px;
+}
+
+.info-container-pago {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+}
+
+.estado {
+    font-size: 20px;
+    padding: 5px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.precio-tag {
+    font-size: 26px;
+    padding: 5px;
+    background-color: #c5da9d;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.anuncio-tags {
+    display: flex;
+    flex-direction: row;
+    
+}
+
+.info-container-tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    margin: auto 5px;
+    border: 1px solid red;
+}
+
+.info-container-tags .tags span {
+    background: #4CAF50;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.anuncio-imagen {
+    display: flex;
+    flex-direction: column;
+    max-width: 40%;
+    margin: 20px 20px 0 0;
+    border: 1px solid red;
+    
+}
+
+
+
+.img-ad{
+    max-width: 100%;
+    width: 500px;
+    height: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 7px;
+}
+
+.imagen-fotos {
+    max-width: 100%;
+    height: 100%;
+    max-height: 300px;
+    object-fit: cover;
+}
+
+
+.ver-fotos-btn {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: flex-end;
+    width: 60%;
+    font-size: 20px;
+    background: none !important;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    margin: 10px 15px 0 0;
+    border: 1px dashed blue;
+}
+
+
+.icon-fotos-container {
+    display: flex;
+    vertical-align: middle;
+    width: 7%;
+    margin-left: 5px;
+}
+
+.icon-fotos {
+    width: 20px;
+    height: 20px;
+    margin: 0;
+    padding: 0;
+
+    object-fit: contain;
+}
+
+
+
+.hora-publicacion {
+    font-weight: bold;
+    color: green;
+}
+
+.modal-content {
+    position: relative;
+    width: 60%;
+    max-width: 700px;
+    background: white;
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.8em;
+    cursor: pointer;
+    color: #555;
+}
+
+.close:hover {
+    color: red;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    margin: 10% auto;
+    padding: 20px;
+    width: 80%;
+    background: white;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.carrusel-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.carrusel img {
+    width: 100%;
+    max-width: 600px;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.carrusel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 30%;
+    z-index: 10;
+}
+
+.favorito-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none !important;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    outline: none;
+    transition: transform 0.2s ease-in-out;
+}
+
+.favorito-btn:hover {
+    transform: scale(1.2);
+}
+
+.remove-fav-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    outline: none;
+}
+
+.izq {
+    left: 10px;
+}
+
+.der {
+    right: 10px;
+}
+
+
+@media screen and (max-width: 1033px) {
+    .precio {
+        display: none;
+    }
+
+    .anuncio-header {
+        font-size: 18px;
+    }
+
+    .anuncio-card {
+        flex-direction: column;
+        flex-wrap: wrap;
+        justify-content: center;
+        min-height: auto;
+        width: 90%;
+        max-height: none;
+        padding: 10px;
+    }
+
+    .titulo {
+        font-size: 30px;
+        text-align: start;
+    }
+
+    .descripcion {
+        font-size: 18px;
+        text-align: start;
+        max-height: 170px;
+        height: 100px;
+    }
+
+    .anuncio-info {
+        width: 100%;
+        margin: 10px 0 0;
+        text-align: center;
+    }
+
+    .anuncio-tags-pago {
+        margin: 0;
+    }
+    
+    .anuncio-tags .tags span{
+        font-size: 16px;
+    }
+
+    .anuncio-imagen {
+        max-width: 100%;
+        margin: 10px auto;
+        width: 100%;
+        
+    }
+
+    .favorito-btn {
+        font-size: 40px;
+    }
+
+
+    .img-ad {
+        width: 100%;
+        margin: 0 auto;
+    }
+
+    .imagen-fotos {
+        max-height: 250px;
+    }
+}
+
+@media screen and (max-width: 1033px) {
+    .anuncio-header {
+        font-size: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .precio {
+        display: none;
+    }
+
+    .anuncio-header{
+        display: grid;
+        grid-template-rows: 1fr 1fr;
+    }
+
+    .anuncio-card {
+        flex-direction: column;
+        flex-wrap: wrap;
+        padding: 10px;
+    }
+
+    .anuncio-info {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .anuncio-imagen {
+        max-width: 100%;
+        margin: 0 auto 10px;
+        width: 100%;
+    }
+
+    .imagen-fotos {
+        max-height: 200px;
+    }
+}
+@media screen and (max-width: 695px) {
+    .anuncio-header,
+    .descripcion,
+    .ubicacion-anuncio,
+    .hora-publicacion,
+    .anuncio-tags,
+    .categoria,
+    .estado,
+    .precio-tag,
+    .ver-fotos-btn {
+        display: none;
+    }
+
+    .favorito-btn {
+        font-size: 40px;
+    }
+
+    .anuncio-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 15px;
+        width: 90%;
+        max-height: 90vh;
+        cursor: pointer;
+        position: relative;
+        margin-bottom: 15px;
+        background: #eaf5d5;
+        border-radius: 5px;
+    }
+
+    .anuncio-imagen {
+        order: -1;
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 10px;
+        position: relative;
+        cursor: pointer;
+        
+    }
+
+    .imagen-fotos {
+        width: 100%;
+        max-height: 220px;
+        object-fit: cover;
+    }
+
+    .anuncio-info {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        background: #f8f9fa;
+        padding: 7px;
+        border-radius: 5px;
+        margin-top: 5px;
+        height: 6vh;
+    }
+
+    .titulo {
+        font-size: 16px;
+        font-weight: bold;
+        text-align: left;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        flex: 1;
+        margin-right: 15px;
+    }
+    
+    .info-container-pago {
+        padding: 0;
+    }
+
+    .precio {
+        display: flex;
+        font-size: 20px;
+        padding: 4px;
+        margin: 3px;
+        background-color: #c5da9d;
+        font-weight: bold;
+        border-radius: 5px;
+        text-align: center;
+        min-width: 50px;
+    }
+}
+
+    
+
+
+
+
