@@ -69,6 +69,7 @@ if (isset($_GET['search']) || isset($_GET['categoria'])) {
         </div>
     </div>
 
+    
 <script>
     function abrirModalCategorias() {
         document.getElementById('modalCategorias').style.display = 'block';
