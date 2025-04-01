@@ -13,6 +13,11 @@ h2 {
     text-align: center;
 }
 
+.container {
+    width: clamp(320px, 90%, 1200px);
+    margin: 0 auto;
+    padding: 0 20px;
+}
 .buscador-container {
     max-width: 800px;
     margin: auto;
@@ -119,8 +124,49 @@ h2 {
     height: 40px;
     margin-bottom: 5px;
 }
+.como-funciona-section {
+  margin-top: 10px;
+  max-width: 1200px;
+  padding: 0 20px;
+  text-align: center;
+}
 
+.como-funciona-section h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: #2c3943;
+  text-align: left;
+}
 
+.pasos-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  flex-wrap: nowrap;
+}
+
+.paso-card {
+  background: #fdfdfd;
+  padding: 25px;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 300px;
+  flex: 1 1 auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.paso-card:hover {
+  transform: translateY(-5px);
+}
+
+.paso-icon {
+  font-size: 2rem;
+  margin-bottom: 15px;
+}
 .modal {
     display: none;
     position: fixed;
@@ -186,3 +232,216 @@ h2 {
     background-color: #0e8541;
     color: #eee;
 }
+.carousel-container {
+    margin-top: 20px;
+    margin-bottom: 50px;
+    width: 100%;
+    max-width: 900px;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative;
+  }
+  
+  .carousel-slide {
+    display: flex;
+    height: 100%;
+    animation: slide 20s infinite ease-in-out;
+    width: calc(900px * 3);
+  }
+  
+  .carousel-item {
+    position: relative;
+    width: 900px;
+    height: 300px;
+    flex-shrink: 0;
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 12px;
+  }
+  
+  .carousel-text {
+    position: absolute;
+    bottom: 20px;
+    left: 30px;
+    background-color: rgba(0,0,0,0.5);
+    color: #fff;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    max-width: 80%;
+  }
+.promo-cards-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 40px;
+  margin: 60px auto;
+  max-width: 1200px;
+  padding: 0 20px;
+  flex-wrap: nowrap;
+}
+
+.promo-card {
+  background: #f5fbef;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  width: 50%;
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease;
+}
+
+.promo-card:hover {
+  transform: translateY(-6px);
+}
+
+.promo-content {
+  text-align: left;
+  margin-bottom: 20px;
+}
+
+.promo-content h3 {
+  font-size: 1rem;
+  margin-bottom: 10px;
+  color: #2c3943;
+}
+
+.promo-content p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+.promo-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-top: auto;
+}
+.reseñas-section  {
+ margin-bottom: 100px;
+}
+
+.reseñas-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #222;
+  text-align: left;
+}
+
+.reseñas-fila {
+  display: flex;
+  justify-content: space-between;
+  gap: 60px;
+  flex-wrap: nowrap;
+}
+
+.reseña-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 25%; 
+  min-width: 220px;
+  text-align: left;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.reseña-card:hover {
+  transform: translateY(-5px);
+}
+
+.reseña-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.reseña-texto {
+  padding: 15px 18px;
+}
+
+.reseña-texto p {
+  font-size: 0.95rem;
+  color: #444;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.reseña-autor {
+  font-size: 0.85rem;
+  color: #777;
+}
+
+.faq-section {
+  max-width: 800px;
+  margin: 80px auto;
+  padding: 0 20px;
+}
+
+.faq-section h2 {
+  font-size: 2rem;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #2c3943;
+}
+
+.faq-item {
+  margin-bottom: 15px;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.faq-question {
+  display: block;
+  width: 100%;
+  padding: 15px 20px;
+  background-color: #e9f5db;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: background-color 0.3s;
+}
+
+.faq-question:hover {
+  background-color: #d8ebc0;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  background-color: #fdfdfd;
+  transition: max-height 0.5s ease, padding 0.3s ease;
+  padding: 0 20px;
+}
+
+.faq-item input:checked ~ .faq-answer {
+  max-height: 500px; 
+  padding: 15px 20px;
+}
+
+  @keyframes slide {
+    0% {
+      transform: translateX(0px);
+    }
+    33% {
+      transform: translateX(-900px);
+    }
+    66% {
+      transform: translateX(-1800px);
+    }
+    100% {
+      transform: translateX(0px);
+    }
+  }

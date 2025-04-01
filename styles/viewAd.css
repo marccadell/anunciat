@@ -115,6 +115,9 @@
     padding: 0 40px;
     border: 1px dashed green;
 }
+.info-container-tags{
+    border-radius: 5px;
+}
 
 .modal-anuncio-descripcion {
     position: relative;
@@ -137,4 +140,11 @@
 
 .modal-anuncio-descripcion, .modal-anuncio-familia {
     flex-grow: 1;
+}
+.descripcion{
+    border-radius: 5px;
+}
+
+.ver-fotos-btn{
+    border-radius: 5px;
 }
