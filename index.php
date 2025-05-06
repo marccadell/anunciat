@@ -1,25 +1,25 @@
 <?php
-session_start();
-require_once 'config.php';
-require_once 'database/db.php';
-include 'includes/header.php';
+    session_start();
+    require_once 'config.php';
+    require_once 'database/db.php';
+    include 'includes/header.php';
 
-$categorias = $conn->query("SELECT id_categoria, nombre_categoria FROM categorias")->fetch_all(MYSQLI_ASSOC);
+    $categorias = $conn->query("SELECT id_categoria, nombre_categoria FROM categorias")->fetch_all(MYSQLI_ASSOC);
 
-if (isset($_GET['search']) || isset($_GET['categoria'])) {
-    $search = $_GET['search'] ?? '';
-    $categoria = $_GET['categoria'] ?? '';
+    if (isset($_GET['search']) || isset($_GET['categoria'])) {
+        $search = $_GET['search'] ?? '';
+        $categoria = $_GET['categoria'] ?? '';
 
-    $query = "SELECT id_anuncio, id_estudiante, id_categoria, titulo, descripcion FROM anuncios WHERE (titulo LIKE '%$search%' OR descripcion LIKE '%$search%')";
-    if ($categoria) {
-        $query .= " AND id_categoria = $categoria";
+        $query = "SELECT id_anuncio, id_estudiante, id_categoria, titulo, descripcion FROM anuncios WHERE (titulo LIKE '%$search%' OR descripcion LIKE '%$search%')";
+        if ($categoria) {
+            $query .= " AND id_categoria = $categoria";
+        }
+
+        $anuncios = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
+
+        header("Location: backend/views/ad/viewAd.php?search=$search&categoria=$categoria");
+        exit();
     }
-
-    $anuncios = $conn->query($query)->fetch_all(MYSQLI_ASSOC);
-
-    header("Location: backend/views/ad/viewAd.php?search=$search&categoria=$categoria");
-    exit();
-}
 ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -36,10 +36,13 @@ if (isset($_GET['search']) || isset($_GET['categoria'])) {
         <div class="buscador-container">
             <h1><strong>¿Qué quieres encontrar?</strong></h1>
             <form action="" method="GET" class="buscador-form">
-                <input type="text" name="search" id="searchInput" placeholder="Estoy buscando..." value="<?php echo $_GET['search'] ?? ''; ?>">
+                <input type="text" name="search" id="searchInput" placeholder="Estoy buscando..."
+                    value="<?php echo $_GET['search'] ?? ''; ?>">
                 <input type="hidden" name="categoria" id="categoriaSeleccionada" value="">
-                <button type="button" class="category-btn" onclick="abrirModalCategorias()" id="botonCategoria">Todas las categorías</button>
-                <button type="submit" class="search-btn"><img class="icon-index" src="<?= BASE_URL ?>/assets/icons/search.png" /></button>
+                <button type="button" class="category-btn" onclick="abrirModalCategorias()" id="botonCategoria">Todas
+                    las categorías</button>
+                <button type="submit" class="search-btn"><img class="icon-index"
+                        src="<?= BASE_URL ?>/assets/icons/search.png" /></button>
             </form>
 
             <div id="modalCategorias" class="modal">
@@ -47,12 +50,15 @@ if (isset($_GET['search']) || isset($_GET['categoria'])) {
                     <span class="close" onclick="cerrarModalCategorias()">&times;</span>
                     <h2>Categorías</h2>
                     <form action="" method="GET" class="buscador-category">
-                        <input type="text" id="buscadorCategoria" placeholder="Buscar una categoría..." onkeyup="filtrarCategorias()">
+                        <input type="text" id="buscadorCategoria" placeholder="Buscar una categoría..."
+                            onkeyup="filtrarCategorias()">
                     </form>
                     <ul id="listaCategorias">
-                        <li data-categoria="" onclick="seleccionarCategoria('Todas las categorías', '')">Todas las categorías</li>
+                        <li data-categoria="" onclick="seleccionarCategoria('Todas las categorías', '')">Todas las
+                            categorías</li>
                         <?php foreach ($categorias as $categoria): ?>
-                            <li data-categoria="<?php echo $categoria['id_categoria']; ?>" onclick="seleccionarCategoria('<?php echo htmlspecialchars($categoria['nombre_categoria']); ?>', '<?php echo $categoria['id_categoria']; ?>')">
+                            <li data-categoria="<?php echo $categoria['id_categoria']; ?>"
+                                onclick="seleccionarCategoria('<?php echo htmlspecialchars($categoria['nombre_categoria']); ?>', '<?php echo $categoria['id_categoria']; ?>')">
                                 <?php echo htmlspecialchars($categoria['nombre_categoria']); ?>
                             </li>
                         <?php endforeach; ?>
@@ -61,12 +67,20 @@ if (isset($_GET['search']) || isset($_GET['categoria'])) {
             </div>
 
             <div class="categorias-container">
-                <?php foreach ($categorias as $categoria): ?>
-                    <a href="<?php echo BASE_URL; ?>/backend/views/ad/viewAd.php?categoria=<?php echo $categoria['id_categoria']; ?>" class="categoria-card">
-                        <img src="<?php echo BASE_URL; ?>/assets/icons/<?php echo strtolower($categoria['nombre_categoria']); ?>.png" alt="Icono de <?php echo htmlspecialchars($categoria['nombre_categoria']); ?>" class="categoria-icon">
-                        <p><?php echo htmlspecialchars($categoria['nombre_categoria']); ?></p>
-                    </a>
-                <?php endforeach; ?>
+                <div class="categorias-scroll-wrapper">
+                    <button class="scroll-btn left" onclick="scrollCategorias(-200)">❮</button>
+                    
+                    <div class="categorias-scroll" id="scrollCategorias">
+                    <?php foreach ($categorias as $categoria): ?>
+                        <a href="<?php echo BASE_URL; ?>/backend/views/ad/viewAd.php?categoria=<?php echo $categoria['id_categoria']; ?>" class="categoria-card">
+                            <img src="<?php echo BASE_URL; ?>/assets/icons/<?php echo strtolower($categoria['nombre_categoria']); ?>.png" alt="Icono de <?php echo htmlspecialchars($categoria['nombre_categoria']); ?>" class="categoria-icon">
+                            <p><?php echo htmlspecialchars($categoria['nombre_categoria']); ?></p>
+                        </a>
+                    <?php endforeach; ?>
+                    </div>
+
+                    <button class="scroll-btn right" onclick="scrollCategorias(200)">❯</button>
+                </div>
                 <div class="carousel-container">
                     <div class="carousel-slide">
 
@@ -86,8 +100,6 @@ if (isset($_GET['search']) || isset($_GET['categoria'])) {
                         </div>
 
                     </div>
-
-
                 </div>
 
                 <div class="como-funciona-section">
@@ -120,7 +132,8 @@ if (isset($_GET['search']) || isset($_GET['categoria'])) {
                     <div class="promo-card">
                         <div class="promo-content">
                             <h3>Vende lo que ya no usas</h3>
-                            <p>Publica tu anuncio totalmente <strong>GRATIS</strong> y encuentra compradores rápido entre estudiantes.</p>
+                            <p>Publica tu anuncio totalmente <strong>GRATIS</strong> y encuentra compradores rápido
+                                entre estudiantes.</p>
                         </div>
                         <img src="assets/imgs/publi/vende.jpg" alt="Vender en Anuncia't">
                     </div>
@@ -146,23 +159,28 @@ if (isset($_GET['search']) || isset($_GET['categoria'])) {
                             <div class="reseña-card">
                                 <img src="assets/imgs/publi/laptop.jpg" alt="Laptop usada">
                                 <div class="reseña-texto">
-                                    <p class="reseña-cita">“Vendí mi portátil en menos de 48 horas. Muy fácil y seguro.”</p>
-                                    <div class="reseña-autor"><strong>Andrea G.</strong> – Ingeniería Informática, 📍 Valencia</div>
+                                    <p class="reseña-cita">“Vendí mi portátil en menos de 48 horas. Muy fácil y seguro.”
+                                    </p>
+                                    <div class="reseña-autor"><strong>Andrea G.</strong> – Ingeniería Informática, 📍
+                                        Valencia</div>
                                 </div>
                             </div>
 
                             <div class="reseña-card">
                                 <img src="assets/imgs/publi/englishClass.jpg" alt="Clases inglés">
                                 <div class="reseña-texto">
-                                    <p class="reseña-cita">“He conseguido varios alumnos para mis clases gracias a esta plataforma.”</p>
-                                    <div class="reseña-autor"><strong>Pablo M.</strong> – Filología Inglesa, 📍 Sevilla</div>
+                                    <p class="reseña-cita">“He conseguido varios alumnos para mis clases gracias a esta
+                                        plataforma.”</p>
+                                    <div class="reseña-autor"><strong>Pablo M.</strong> – Filología Inglesa, 📍 Sevilla
+                                    </div>
                                 </div>
                             </div>
 
                             <div class="reseña-card">
                                 <img src="assets/imgs/publi/silla.jpg" alt="Silla estudio">
                                 <div class="reseña-texto">
-                                    <p class="reseña-cita">“Tenía cosas que no usaba y logré vender todo entre estudiantes.”</p>
+                                    <p class="reseña-cita">“Tenía cosas que no usaba y logré vender todo entre
+                                        estudiantes.”</p>
                                     <div class="reseña-autor"><strong>Marta R.</strong> – Psicología, 📍 Barcelona</div>
                                 </div>
                             </div>
@@ -170,7 +188,8 @@ if (isset($_GET['search']) || isset($_GET['categoria'])) {
                             <div class="reseña-card">
                                 <img src="assets/imgs/publi/mochila.jpg" alt="Mochila">
                                 <div class="reseña-texto">
-                                    <p class="reseña-cita">“Vendí mi mochila del año pasado en un día. ¡Rápido y cómodo!”</p>
+                                    <p class="reseña-cita">“Vendí mi mochila del año pasado en un día. ¡Rápido y
+                                        cómodo!”</p>
                                     <div class="reseña-autor"><strong>Lucas D.</strong> – Arquitectura</div>
                                 </div>
                             </div>
@@ -218,6 +237,40 @@ if (isset($_GET['search']) || isset($_GET['categoria'])) {
 
 
     <script>
+        function scrollCategorias(amount) {
+    const container = document.getElementById('scrollCategorias');
+    container.scrollBy({ left: amount, behavior: 'smooth' });
+}
+
+function actualizarVisibilidadFlechas() {
+    const container = document.getElementById('scrollCategorias');
+    const btnLeft = document.querySelector('.scroll-btn.left');
+    const btnRight = document.querySelector('.scroll-btn.right');
+
+    const scrollLeft = container.scrollLeft;
+    const scrollWidth = container.scrollWidth;
+    const clientWidth = container.clientWidth;
+
+    if (scrollLeft <= 5) {
+        btnLeft.classList.add('hidden');
+    } else {
+        btnLeft.classList.remove('hidden');
+    }
+
+    if (scrollLeft + clientWidth >= scrollWidth - 5) {
+        btnRight.classList.add('hidden');
+    } else {
+        btnRight.classList.remove('hidden');
+    }
+}
+
+window.addEventListener('load', () => {
+    const container = document.getElementById('scrollCategorias');
+    actualizarVisibilidadFlechas();
+    container.addEventListener('scroll', actualizarVisibilidadFlechas);
+    window.addEventListener('resize', actualizarVisibilidadFlechas);
+});
+
         function abrirModalCategorias() {
             document.getElementById('modalCategorias').style.display = 'block';
         }

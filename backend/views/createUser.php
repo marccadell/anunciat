@@ -83,7 +83,3 @@
             <a href='<?= BASE_URL ?>/index.php'>Volver</a>
         </form>
     </div>
-
-<?php
-    include ('../../includes/footer.php')
-?>
