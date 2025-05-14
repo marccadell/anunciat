@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 18-02-2025 a las 16:02:42
+-- Tiempo de generación: 14-05-2025 a las 16:37:29
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -85,7 +85,23 @@ CREATE TABLE `categorias` (
 --
 
 INSERT INTO `categorias` (`id_categoria`, `id_admin`, `nombre_categoria`, `fecha_modificacion`) VALUES
-(1, 1, 'Libros', '2025-02-09 17:39:19');
+(1, 1, 'Libros', '2025-02-09 17:39:19'),
+(2, 1, 'Apuntes y resúmenes', '2025-02-09 17:39:19'),
+(3, 1, 'Material escolar', '2025-02-09 17:39:19'),
+(4, 1, 'Electrónica', '2025-02-09 17:39:19'),
+(5, 1, 'Accesorios de informática', '2025-02-09 17:39:19'),
+(6, 1, 'Muebles', '2025-02-09 17:39:19'),
+(7, 1, 'Ropa', '2025-02-09 17:39:19'),
+(8, 1, 'Bicis y patinetes', '2025-02-09 17:39:19'),
+(9, 1, 'Compartir piso', '2025-02-09 17:39:19'),
+(10, 1, 'Cursos y formación', '2025-02-09 17:39:19'),
+(11, 1, 'Instrumentos musicales', '2025-02-09 17:39:19'),
+(12, 1, 'Clases particulares', '2025-02-09 17:39:19'),
+(13, 1, 'Deportes y actividades', '2025-02-09 17:39:19'),
+(14, 1, 'Ofertas de empleo', '2025-02-09 17:39:19'),
+(15, 1, 'Citas', '2025-02-09 17:39:19'),
+(16, 1, 'Conocer estudiantes', '2025-02-09 17:39:19'),
+(17, 1, 'Otros', '2025-02-09 17:39:19');
 
 -- --------------------------------------------------------
 
@@ -113,7 +129,8 @@ CREATE TABLE `estudiantes` (
 --
 
 INSERT INTO `estudiantes` (`id_estudiante`, `nombre`, `apellido`, `email`, `password`, `escuela`, `ubicacion`, `telefono`, `fecha_nacimiento`, `genero`, `foto_perfil`, `fecha_registro`) VALUES
-(1, 'Marc', 'Adell', 'madell@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Ilerna', 'Barcelona', '747793766', '2000-01-22', 'Masculino', 'assets/imgs/dummie/estudiante.png', '2025-02-08 14:49:36');
+(1, 'Marc', 'Adell', 'madell@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', 'Ilerna', 'Barcelona', '747793766', '2000-01-22', 'Masculino', 'assets/imgs/dummie/estudiante.png', '2025-02-08 14:49:36'),
+(2, 'user', '1', 'user@gmail.com', 'e10adc3949ba59abbe56e057f20f883e', 'Ilerna', 'Barcelona', '747793766', '2000-07-06', 'Masculino', 'assets/imgs/profiles/680cc2bb66ed5.jpg', '2025-04-26 13:25:47');
 
 -- --------------------------------------------------------
 
@@ -359,13 +376,13 @@ ALTER TABLE `anuncios`
 -- AUTO_INCREMENT de la tabla `categorias`
 --
 ALTER TABLE `categorias`
-  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_categoria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT de la tabla `estudiantes`
 --
 ALTER TABLE `estudiantes`
-  MODIFY `id_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_estudiante` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `familias`
