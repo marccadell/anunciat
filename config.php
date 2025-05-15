@@ -1,3 +1,3 @@
 <?php
-    define('BASE_URL', '/proyecto');
+    define('BASE_URL', '/anunciat');
 ?>

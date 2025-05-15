@@ -55,10 +55,11 @@
     <title>Filtrado de Anuncios</title>
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/styles/viewAd.css">
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/styles/adCard.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/styles/global.css">
 </head>
 <body>
     <div class="main-content">
-        <div class="container">
+        <div class="container-ad">
             <h1>Resultados de Búsqueda</h1>
             
             <?php if ($result->num_rows > 0): ?>
@@ -126,8 +127,7 @@
         <?php else: ?>
             <p>No hay anuncios que coincidan con tu búsqueda.</p>
         <?php endif; ?>
-            
-            <a href='<?= BASE_URL ?>/index.php'>Volver</a>
+            <a class="return" href='<?= BASE_URL ?>/index.php'>Volver</a>
         </div>
 
         <div id="modalAnuncio" class="modal-2">
@@ -151,11 +151,11 @@
                                     <div class="tags-container">
                                         <div class='tags'>
                                             <p><strong>Informació bàsica:</strong></p>
-                                            <span><?= htmlspecialchars($anuncio['tag1']) ?>dasgdg</span>
-                                            <span><?= htmlspecialchars($anuncio['tag2'] ?? '') ?>dgdg</span>
-                                            <span><?= htmlspecialchars($anuncio['tag3'] ?? '') ?>dgdgdg</span>
-                                            <span><?= htmlspecialchars($anuncio['tag4'] ?? '') ?>dgdg</span>
-                                            <span><?= htmlspecialchars($anuncio['tag5'] ?? '') ?>dsgdsg</span>
+                                            <span><?= htmlspecialchars($anuncio['tag1']) ?></span>
+                                            <span><?= htmlspecialchars($anuncio['tag2'] ?? '') ?></span>
+                                            <span><?= htmlspecialchars($anuncio['tag3'] ?? '') ?></span>
+                                            <span><?= htmlspecialchars($anuncio['tag4'] ?? '') ?></span>
+                                            <span><?= htmlspecialchars($anuncio['tag5'] ?? '') ?></span>
                                         </div>
                                     </div>
                                     <div class="modal-anuncio-precio">

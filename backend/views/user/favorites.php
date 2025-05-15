@@ -34,7 +34,26 @@
         exit();
     }
 
-    $stmt = $conn->prepare("SELECT a.*, e.ubicacion AS usu_ubicacion, e.email, e.foto_perfil, c.nombre_categoria, GROUP_CONCAT(i.ruta_imagen) AS fotos FROM favoritos f INNER JOIN anuncios a ON f.id_anuncio = a.id_anuncio LEFT JOIN imagenes_anuncios i ON a.id_anuncio = i.id_anuncio INNER JOIN estudiantes e ON a.id_estudiante = e.id_estudiante INNER JOIN categorias c ON a.id_categoria = c.id_categoria WHERE f.id_estudiante = ? GROUP BY a.id_anuncio");
+    $stmt = $conn->prepare("
+        SELECT 
+            a.*, 
+            e.ubicacion AS usu_ubicacion, 
+            e.email, 
+            e.foto_perfil AS usu_foto, 
+            c.nombre_categoria, 
+            fam.estado_producto,
+            GROUP_CONCAT(i.ruta_imagen) AS fotos 
+        FROM favoritos f 
+        INNER JOIN anuncios a ON f.id_anuncio = a.id_anuncio 
+        LEFT JOIN imagenes_anuncios i ON a.id_anuncio = i.id_anuncio 
+        INNER JOIN estudiantes e ON a.id_estudiante = e.id_estudiante 
+        INNER JOIN categorias c ON a.id_categoria = c.id_categoria 
+        INNER JOIN familias fam ON fam.id_anuncio = a.id_anuncio
+        WHERE f.id_estudiante = ? 
+        GROUP BY a.id_anuncio
+    ");
+
+
     $stmt->bind_param("i", $user_id);
     $stmt->execute();
     $favorites = $stmt->get_result();
@@ -56,13 +75,14 @@
     }
 ?>
 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mis Favoritos</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/styles/favorites.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/styles/viewAd.css">
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/styles/adCard.css">
 </head>
 <body>
@@ -71,62 +91,70 @@
             <h1>Mis Anuncios Favoritos</h1>
 
             <?php if ($favorites->num_rows > 0): ?>
-                <div class='anuncios-container'>
-                    <?php while ($row = $favorites->fetch_assoc()): ?>
-                        <div class='anuncio-card'>
-                            <div class='anuncio-info'>
-                                <!-- Cabecera del anuncio -->
-                                <div class="anuncio-header">
-                                    <img src='<?= BASE_URL . "/" . htmlspecialchars($row['foto_perfil']) ?>' alt='Foto de perfil' class='perfil-foto'>
-                                    <p class='hora-publicacion'><?= formatFechaPublicacion($row['fecha_publicacion']) ?></p>
-                                    <p class="ubicacion-anuncio">Venta de <?= htmlspecialchars($row['tipo_producto']) ?> (<?= htmlspecialchars($row['usu_ubicacion']) ?>)</p>
-                                </div>
-                                <!-- Titulo del anuncio -->
-                                <h2 class="titulo"><?= htmlspecialchars($row['titulo']) ?></h2>
-                                <!-- Descripcion del anuncio -->
-                                <p class='descripcion'><?= nl2br(htmlspecialchars($row['descripcion'])) ?></p>
-                                <!-- Tags especificaciones  -->
-
-                                <div class="anuncio-tags">
-                                    <div class="tags-container">
-                                        <div class='tags'>
-                                            <span>Categoria: <?= htmlspecialchars($row['nombre_categoria']) ?></span>
-                                            <span><?= htmlspecialchars($row['estado']) ?></span>
-                                        </div>
-                                        <div class="precio">
-                                            <span><?= number_format($row['precio'], 2) ?> €</span>
-                                        </div>
+            <div class='anuncios-container'>
+                <?php while ($row = $favorites->fetch_assoc()): ?>
+                    <div class='anuncio-card'>
+                        <div class='anuncio-info' onclick="mostrarModalAnuncio()">
+                            <div class="anuncio-header">
+                                <img src='<?= BASE_URL . "/" . htmlspecialchars($row['usu_foto']) ?>' alt='Foto de perfil' class='perfil-foto'>
+                                <p class='hora-publicacion'><?= formatFechaPublicacion($row['fecha_publicacion']) ?></p>
+                                <p class="ubicacion-anuncio">Venta de <?= htmlspecialchars($row['nombre_categoria']) ?> (<?= htmlspecialchars($row['usu_ubicacion']) ?>)</p>
+                            </div>
+                            <h2 class="titulo"><?= htmlspecialchars($row['titulo']) ?></h2>
+                            <p class='descripcion'><?= nl2br(htmlspecialchars($row['descripcion'])) ?></p>
+                            <span class="precio"><?= number_format($row['precio'], 2) ?> €</span>
+                            <div class="anuncio-tags">
+                                <div class="info-container-tags">
+                                    <div class='tags'>
+                                        <?php if (!empty($row['tag1'])): ?>
+                                            <span><?= htmlspecialchars($row['tag1']) ?></span>
+                                        <?php endif; ?>
+                                        <?php if (!empty($row['tag2'])): ?>
+                                            <span><?= htmlspecialchars($row['tag2']) ?></span>
+                                        <?php endif; ?>
+                                        <?php if (!empty($row['tag3'])): ?>
+                                            <span><?= htmlspecialchars($row['tag3']) ?></span>
+                                        <?php endif; ?>
+                                        <?php if (!empty($row['tag4'])): ?>
+                                            <span><?= htmlspecialchars($row['tag4']) ?></span>
+                                        <?php endif; ?>
+                                        <?php if (!empty($row['tag5'])): ?>
+                                            <span><?= htmlspecialchars($row['tag5']) ?></span>
+                                        <?php endif; ?>
                                     </div>
-
-                                    <!-- Boton de contacto  -->
-                                    <?php if (isset($_SESSION['user_id'])): ?>
-                                        <button class='contacto-btn' onclick='mostrarEmail("<?= $row['email'] ?>")'>📞 Contacto</button>
-                                    <?php else: ?>
-                                        <p class='login-message'>Debes iniciar sesión para ver la información de contacto.</p>
-                                    <?php endif; ?>
                                 </div>
                             </div>
                             
-                            <!-- Botón de quitar de favoritos -->
-                            <button id="fav-btn-<?= $row['id_anuncio'] ?>" class="remove-fav-btn"
-                            onclick="toggleFavorite(<?= $row['id_anuncio'] ?>, 'fav-btn-<?= $row['id_anuncio'] ?>')">❌</button>
-
-                            <!-- Mostrar imagenes del anuncio -->
-                            <?php if (!empty($row['fotos'])):
-                                $fotos = explode(',', $row['fotos']); ?>
-                                <div class='anuncio-imagen'>
-                                    <img src='<?= BASE_URL . "/" . htmlspecialchars($fotos[0]) ?>' alt='Imagen del anuncio'>
-                                    <button class='ver-fotos-btn' onclick='abrirModal(<?= json_encode($fotos) ?>)'>Ver más fotos <div class="icon-fotos-container"><img class="icon-fotos" src="<?php echo BASE_URL; ?>/assets/icons/more.png"></div></button>
+                            <div class="anuncio-tags-pago">
+                                <div class="info-container-pago">
+                                    <span class="estado"><?= htmlspecialchars($row['estado_producto']) ?></span>
+                                    <div class="precio-tag">
+                                        <span>Preu: <?= number_format($row['precio'], 2) ?> €</span>
+                                    </div>
                                 </div>
-                            <?php endif; ?>
+                            </div>
                         </div>
-                    <?php endwhile; ?>
-                </div>
-            <?php else: ?>
-                <p>No tienes anuncios en favoritos.</p>
-            <?php endif; ?>
 
-            <a href='<?= BASE_URL ?>/index.php'>Volver</a>
+                        <!-- Botón de quitar de favoritos -->
+                        <button id="fav-btn-<?= $row['id_anuncio'] ?>" class="remove-fav-btn"
+                        onclick="toggleFavorite(<?= $row['id_anuncio'] ?>, 'fav-btn-<?= $row['id_anuncio'] ?>')">❌</button>
+
+                        <?php if (!empty($row['fotos'])):
+                            $fotos = explode(',', $row['fotos']); ?>
+                            <div class='anuncio-imagen'>
+                                <img class="img-ad" src='<?= BASE_URL . "/" . htmlspecialchars($fotos[0]) ?>' alt='Imagen del anuncio'>
+                                <button class='ver-fotos-btn' onclick='abrirModal(<?= json_encode($fotos) ?>)'>Ver más fotos <div class="icon-fotos-container"><img class="icon-fotos" src="<?php echo BASE_URL; ?>/assets/icons/more.png"></div></button>
+                            </div>
+                        <?php endif; ?>
+                        
+                    
+                    </div>
+                <?php endwhile; ?>
+            </div>
+        <?php else: ?>
+            <p>No tienes anuncios en favoritos.</p>
+        <?php endif; ?>
+            <a class="return" href='<?= BASE_URL ?>/index.php'>Volver</a>
         </div>
 
         <div id="modalFotos" class="modal">

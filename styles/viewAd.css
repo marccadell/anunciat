@@ -5,6 +5,10 @@
     justify-content: center;
 }
 
+.container-ad {
+    margin: auto auto 50px;
+}
+
 .modal-anuncio-familia {
     width: 30%;
     max-width: 30%;
@@ -145,3 +149,24 @@
 .ver-fotos-btn{
     border-radius: 5px;
 }
+
+.return {
+    display: inline-block;
+    text-align: center;
+    margin: 30px auto;
+    padding: 12px 24px;
+    background-color: #6a7952;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: sans-serif;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.return:hover {
+    background-color: #55643e;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
