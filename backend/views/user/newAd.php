@@ -33,16 +33,16 @@
     <link rel="stylesheet" type="text/css" href="<?php echo BASE_URL; ?>/styles/footer.css">
 </head>
 <body>
-    <div class="main-content">
-        <div class="container">
-            <h1>Publicar Anuncio</h1>
+    <div class="main-content anuncio-main">
+        <div class="container anuncio-container">
+            <h1 class="anuncio-titulo">Publicar Anuncio</h1>
 
-            <form action="<?php echo BASE_URL; ?>/backend/controllers/newAd.proc.php" method="post" enctype="multipart/form-data">
-                <label>Nombre del Artículo:</label>
-                <input type="text" name="nombre_articulo" required>
+            <form class="ad-new-form" action="<?php echo BASE_URL; ?>/backend/controllers/newAd.proc.php" method="post" enctype="multipart/form-data">
+                <label class="ad-label">Nombre del Artículo:</label>
+                <input class="ad-input" type="text" name="nombre_articulo" required>
 
-                <label>Condición:</label>
-                <select name="estado_producto" required>
+                <label class="ad-label">Condición:</label>
+                <select class="ad-select" name="estado_producto" required>
                     <option value="Nuevo">Nuevo</option>
                     <option value="Excelente">Excelente</option>
                     <option value="Bueno">Bueno</option>
@@ -50,11 +50,11 @@
                     <option value="Mal Estado">Mal Estado</option>
                 </select>
 
-                <label>Precio (€):</label>
-                <input type="number" name="precio" min="0" step="0.01" required>
+                <label class="ad-label">Precio (€):</label>
+                <input class="ad-input" type="number" name="precio" min="0" step="0.01" required>
 
-                <label>Categoría:</label>
-                <select name="id_categoria" required>
+                <label class="ad-label">Categoría:</label>
+                <select class="ad-select" name="id_categoria" required>
                     <?php foreach ($categorias as $categoria): ?>
                         <option value="<?php echo $categoria['id_categoria']; ?>">
                             <?php echo htmlspecialchars($categoria['nombre_categoria']); ?>
@@ -62,24 +62,25 @@
                     <?php endforeach; ?>
                 </select>
 
-                <label>Descripción:</label>
-                <textarea name="descripcion" required></textarea>
+                <label class="ad-label">Descripción:</label>
+                <textarea class="ad-textarea" name="descripcion" required></textarea>
 
-                <label>Características del Producto:</label>
-                <input type="text" name="tag1" placeholder="Ejemplo: Kilometraje, Tamaño, Material, Marca" required>
-                <input type="text" name="tag2" placeholder="Ejemplo: Año de fabricación, Color, Modelo">
-                <input type="text" name="tag3" placeholder="Tag opcional">
-                <input type="text" name="tag4" placeholder="Tag opcional">
-                <input type="text" name="tag5" placeholder="Tag opcional">
+                <label class="ad-label">Características del Producto:</label>
+                <input class="ad-input" type="text" name="tag1" placeholder="Ejemplo: Kilometraje, Tamaño, Material, Marca" required>
+                <input class="ad-input" type="text" name="tag2" placeholder="Ejemplo: Año de fabricación, Color, Modelo">
+                <input class="ad-input" type="text" name="tag3" placeholder="Tag opcional">
+                <input class="ad-input" type="text" name="tag4" placeholder="Tag opcional">
+                <input class="ad-input" type="text" name="tag5" placeholder="Tag opcional">
 
-                <label>Subir Fotos (Mínimo 1, Máximo 5):</label>
-                <input type="file" name="fotos[]" accept="image/*" multiple required>
+                <label class="ad-label">Subir Fotos (Mínimo 1, Máximo 5):</label>
+                <input class="ad-file" type="file" name="fotos[]" accept="image/*" multiple required>
 
-                <button type="submit">Publicar Anuncio</button>
+                <button class="ad-submit-btn" type="submit">Publicar Anuncio</button>
             </form>
 
-            <a href="<?php echo BASE_URL; ?>/index.php">Volver</a>
+            <a class="ad-volver-link" href="<?php echo BASE_URL; ?>/index.php">Volver</a>
         </div>
     </div>
+
     
 <?php include('../../../includes/footer.php'); ?>
